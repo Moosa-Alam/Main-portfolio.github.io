@@ -415,6 +415,71 @@ form{display:grid;gap:1.1rem}
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.001s!important}
   .marquee-track{animation:none!important}
 }
+
+/* ---------- Local SEO portfolio ---------- */
+.ls-filter{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.6rem}
+.ls-tab{padding:.65rem 1.1rem;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;font:600 1.05rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:background .25s,color .25s,border-color .25s}
+.ls-tab:hover{color:var(--paper);border-color:rgba(244,239,233,.4)}
+.ls-tab[aria-pressed=true]{background:var(--coral);border-color:var(--coral);color:var(--ink)}
+.ls-group{margin-bottom:3.6rem}
+.ls-group:last-child{margin-bottom:0}
+.ls-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1rem 2rem;margin-bottom:1.4rem;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+.ls-head h3{font-size:clamp(2.2rem,5vw,3.4rem)}
+.ls-head p{color:var(--muted);max-width:46ch;margin-top:.5rem}
+.ls-stat{display:flex;align-items:center;gap:.9rem;padding:.7rem 1.1rem;border-radius:12px;border:1px solid var(--line);background:var(--ink-2)}
+.ls-stat b{font:400 2.6rem/1 var(--f-display);letter-spacing:.03em;color:var(--mint);white-space:nowrap}
+.ls-stat span{color:var(--muted);font:600 .95rem/1.25 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;max-width:14ch}
+.ls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:1.4rem}
+.ls-card{margin:0;display:flex;flex-direction:column;min-width:0;border-radius:16px;border:1px solid var(--line);background:var(--ink-2)}
+.ls-card:hover{border-color:rgba(94,231,209,.55)}
+.ls-shot{display:block;position:relative;width:100%;padding:0;border:0;background:#fff;cursor:zoom-in;line-height:0}
+.ls-shot img{display:block;width:100%;height:auto}
+.ls-shot::after{content:"Enlarge";position:absolute;right:.7rem;bottom:.7rem;padding:.35rem .6rem;border-radius:8px;background:rgba(14,12,16,.85);color:var(--paper);font:600 .85rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .25s}
+.ls-shot:hover::after,.ls-shot:focus-visible::after{opacity:1}
+.ls-cap{padding:1rem 1.2rem 1.2rem;display:grid;gap:.55rem}
+.ls-cap .mono{color:var(--apricot);font-size:.85rem}
+.ls-moves{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.ls-moves li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:.95rem;color:var(--paper)}
+.ls-moves li span:first-child{min-width:0;overflow-wrap:anywhere;color:var(--muted)}
+.ls-moves .mv{font:400 1.5rem/1 var(--f-display);letter-spacing:.04em;white-space:nowrap}
+.ls-moves .mv i{font-style:normal;color:var(--muted)}
+.ls-moves .mv em{font-style:normal;color:var(--mint)}
+.ls-note{margin-top:2.2rem;color:var(--muted);font-size:.9rem;max-width:70ch}
+/* Local SEO: 3D + motion */
+#local-seo .wrap{position:relative;z-index:1}
+.ls-item{min-width:0}
+.ls-card{position:relative;transform-style:preserve-3d;height:100%;overflow:visible;transition:border-color .3s,box-shadow .4s}
+.ls-card:hover{transform:none;box-shadow:0 40px 70px -30px rgba(94,231,209,.35)}
+.ls-card::before{content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:conic-gradient(from var(--ang,0deg),var(--coral),var(--apricot),var(--mint),var(--coral));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:lsSpin 4s linear infinite}
+.ls-card:hover::before{opacity:1}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes lsSpin{to{--ang:360deg}}
+.ls-shot{border-radius:16px 16px 0 0;overflow:hidden;transform:translateZ(12px)}
+.ls-shot::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(94,231,209,.35) 50%,transparent 65%);transform:translateX(-130%)}
+.ls-card:hover .ls-shot::before{transform:translateX(130%);transition:transform 1s var(--ease)}
+.ls-shot img{transition:transform .8s var(--ease)}
+.ls-card:hover .ls-shot img{transform:scale(1.04)}
+.ls-cap{transform:translateZ(26px)}
+.ls-badge{position:absolute;top:-14px;right:-10px;z-index:3;padding:.5rem .85rem;border-radius:12px;background:linear-gradient(135deg,var(--coral),var(--apricot));color:var(--ink);font:400 1.5rem/1 var(--f-display);letter-spacing:.06em;box-shadow:0 18px 30px -12px rgba(255,111,97,.8);transform:translateZ(70px);animation:lsFloat 4.5s ease-in-out infinite}
+.ls-item:nth-child(2) .ls-badge{animation-delay:-1.5s}.ls-item:nth-child(3) .ls-badge{animation-delay:-3s}
+@keyframes lsFloat{50%{transform:translateZ(90px) translateY(-6px) rotateZ(-3deg)}}
+.ls-stat{position:relative;transform-style:preserve-3d;animation:lsPulse 3.5s ease-in-out infinite;overflow:hidden}
+.ls-stat::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(94,231,209,.18) 50%,transparent 65%);transform:translateX(-120%);animation:lsSweep 4.5s ease-in-out infinite}
+@keyframes lsSweep{60%,100%{transform:translateX(120%)}}
+@keyframes lsPulse{50%{box-shadow:0 0 0 6px rgba(94,231,209,.08)}}
+.ls-head h3{background:linear-gradient(90deg,var(--paper),var(--apricot) 60%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ls-tab{transition:background .25s,color .25s,border-color .25s,transform .35s var(--ease)}
+.ls-tab:hover{transform:translateY(-3px) rotateX(18deg)}
+.ls-group{animation:lsIn .6s var(--ease) both}
+@keyframes lsIn{from{opacity:0;transform:translateY(24px)}}
+@media(prefers-reduced-motion:reduce){.ls-badge,.ls-stat,.ls-stat::after,.ls-card::before{animation:none!important}}
+.shot-lb{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));background:rgba(8,6,10,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.shot-lb img{max-width:min(1500px,100%);max-height:84vh;border-radius:10px;background:#fff;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.shot-lb p{margin-top:.9rem;color:var(--muted);text-align:center}
+.shot-lb .icon-btn{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:14px}
+.shot-lb figure{margin:0;display:flex;flex-direction:column;align-items:center;max-width:100%}
 </style>
 
 <div class="progress" aria-hidden="true"></div>
@@ -424,6 +489,7 @@ form{display:grid;gap:1.1rem}
   <a class="brand" href="#home"><span class="dot"></span>Moosa Alam</a>
   <div class="links">
     <a href="#work">Work</a>
+    <a href="#local-seo">Local SEO</a>
     <a href="#articles">Articles</a>
     <a href="#services">Services</a>
     <a href="#lab">Easing lab</a>
@@ -490,6 +556,94 @@ form{display:grid;gap:1.1rem}
       <p>Websites, SEO and content, shown as live example loops. Hover to speed them up, click to enlarge.</p>
     </div>
     <div class="work-grid stage3d" id="work-grid"></div>
+  </div>
+</section>
+
+<section class="section alt" id="local-seo">
+    <span class="c3 mono" aria-hidden="true" style="left:3%;top:20%;--dl:0s">#1 RANK</span>
+    <span class="c3 mono" aria-hidden="true" style="right:4%;top:30%;--dl:-1.6s">MAP PACK</span>
+    <span class="c3 mono" aria-hidden="true" style="left:5%;top:58%;--dl:-3.1s">PAGE 1</span>
+    <span class="c3 mono" aria-hidden="true" style="right:6%;top:74%;--dl:-4.4s">LOCAL SEO</span>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow mono">Local SEO portfolio</p>
+        <h2>Before and after rankings.</h2>
+      </div>
+      <p>Real keyword ranking screenshots from local businesses I optimised. Each screenshot shows the previous position next to the position achieved after my SEO work.</p>
+    </div>
+
+    <div class="ls-filter rv" role="group" aria-label="Filter by category">
+      <button class="ls-tab" type="button" data-cat="all" aria-pressed="true">All</button>
+      <button class="ls-tab" type="button" data-cat="tree" aria-pressed="false">Tree Removal</button>
+      <button class="ls-tab" type="button" data-cat="law" aria-pressed="false">Law Firm</button>
+      <button class="ls-tab" type="button" data-cat="plumbing" aria-pressed="false">Plumbing</button>
+    </div>
+
+    <div class="ls-group" data-cat="tree">
+      <div class="ls-head rv">
+        <div><h3>Tree Removal</h3><p>Cost and service keywords across Miami and San Diego, moved from the 40s and 50s into the top two spots.</p></div>
+        <div class="ls-stat"><b data-from="50" data-to="1">50 &rarr; 1</b><span>Biggest jump shown</span></div>
+      </div>
+      <div class="ls-grid stage3d">
+        <div class="ls-item rv" style="--d:0ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#1</span>
+          <button class="ls-shot" type="button" data-full="Tree%20Removal/image_original.png" data-cap="Semrush rankings for tree removal cost keywords, previous position 38 to 39, now position 1 to 2" aria-label="Enlarge screenshot: Semrush rankings for tree removal cost keywords, previous position 38 to 39, now position 1 to 2"><img src="Tree%20Removal/image_original.png" alt="Semrush rankings for tree removal cost keywords, previous position 38 to 39, now position 1 to 2" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Cost-intent keywords</span><ul class="ls-moves"><li><span>how much does it cost to remove</span><span class="mv"><i>39</i> &rarr; <em>1</em></span></li><li><span>tree service costs</span><span class="mv"><i>38</i> &rarr; <em>1</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:140ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#1</span>
+          <button class="ls-shot" type="button" data-full="Tree%20Removal/image_original1.png" data-cap="Semrush rankings for Miami tree service keywords, previous position 44, now position 1 to 2" aria-label="Enlarge screenshot: Semrush rankings for Miami tree service keywords, previous position 44, now position 1 to 2"><img src="Tree%20Removal/image_original1.png" alt="Semrush rankings for Miami tree service keywords, previous position 44, now position 1 to 2" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Miami keywords</span><ul class="ls-moves"><li><span>inexpensive tree services</span><span class="mv"><i>44</i> &rarr; <em>1</em></span></li><li><span>tree trimming miami</span><span class="mv"><i>44</i> &rarr; <em>2</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:280ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#1</span>
+          <button class="ls-shot" type="button" data-full="Tree%20Removal/image_original2.png" data-cap="Semrush rankings for San Diego tree removal keywords, previous position 49 to 50, now position 1 to 2" aria-label="Enlarge screenshot: Semrush rankings for San Diego tree removal keywords, previous position 49 to 50, now position 1 to 2"><img src="Tree%20Removal/image_original2.png" alt="Semrush rankings for San Diego tree removal keywords, previous position 49 to 50, now position 1 to 2" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">San Diego keywords</span><ul class="ls-moves"><li><span>tree removal san diego</span><span class="mv"><i>50</i> &rarr; <em>1</em></span></li><li><span>tree cutting san diego</span><span class="mv"><i>50</i> &rarr; <em>1</em></span></li></ul></figcaption>
+        </figure></div>
+      </div>
+    </div>
+
+    <div class="ls-group" data-cat="law">
+      <div class="ls-head rv">
+        <div><h3>Law Firm</h3><p>City and practice-area keywords for attorneys, lifted onto page one in competitive markets.</p></div>
+        <div class="ls-stat"><b data-from="64" data-to="10">64 &rarr; 10</b><span>Biggest jump shown</span></div>
+      </div>
+      <div class="ls-grid stage3d">
+        <div class="ls-item rv" style="--d:0ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#2</span>
+          <button class="ls-shot" type="button" data-full="Law%20Firm/image_original.png" data-cap="Semrush rankings for city lawyer and attorney keywords, previous positions 5 to 11, now positions 2 to 5" aria-label="Enlarge screenshot: Semrush rankings for city lawyer and attorney keywords, previous positions 5 to 11, now positions 2 to 5"><img src="Law%20Firm/image_original.png" alt="Semrush rankings for city lawyer and attorney keywords, previous positions 5 to 11, now positions 2 to 5" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">City attorney keywords</span><ul class="ls-moves"><li><span>mobile alabama attorney</span><span class="mv"><i>9</i> &rarr; <em>2</em></span></li><li><span>lawyers in wichita ks</span><span class="mv"><i>11</i> &rarr; <em>4</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:140ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">TOP 10</span>
+          <button class="ls-shot" type="button" data-full="Law%20Firm/image_original1.png" data-cap="Semrush rankings for local lawyer keywords, previous positions up to 64, now page one positions 4 to 10" aria-label="Enlarge screenshot: Semrush rankings for local lawyer keywords, previous positions up to 64, now page one positions 4 to 10"><img src="Law%20Firm/image_original1.png" alt="Semrush rankings for local lawyer keywords, previous positions up to 64, now page one positions 4 to 10" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Page-one climbs</span><ul class="ls-moves"><li><span>lawyers in hawaii</span><span class="mv"><i>64</i> &rarr; <em>10</em></span></li><li><span>stockton divorce attorney</span><span class="mv"><i>31</i> &rarr; <em>10</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:280ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#7</span>
+          <button class="ls-shot" type="button" data-full="Law%20Firm/image_original2.png" data-cap="Semrush rankings for law firm keywords including lawyer new york city, previous 10 to 16, now positions 3 to 10" aria-label="Enlarge screenshot: Semrush rankings for law firm keywords including lawyer new york city, previous 10 to 16, now positions 3 to 10"><img src="Law%20Firm/image_original2.png" alt="Semrush rankings for law firm keywords including lawyer new york city, previous 10 to 16, now positions 3 to 10" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Competitive markets</span><ul class="ls-moves"><li><span>lawyer new york city</span><span class="mv"><i>15</i> &rarr; <em>7</em></span></li><li><span>illinois lawyers</span><span class="mv"><i>12</i> &rarr; <em>6</em></span></li></ul></figcaption>
+        </figure></div>
+      </div>
+    </div>
+
+    <div class="ls-group" data-cat="plumbing">
+      <div class="ls-head rv">
+        <div><h3>Plumbing</h3><p>Miami plumbing, commercial and grease trap keywords, from deep in the results to the top spots.</p></div>
+        <div class="ls-stat"><b data-from="98" data-to="1">98 &rarr; 1</b><span>Biggest jump shown</span></div>
+      </div>
+      <div class="ls-grid stage3d">
+        <div class="ls-item rv" style="--d:0ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#4</span>
+          <button class="ls-shot" type="button" data-full="Plumbing/image_original.png" data-cap="Semrush rankings for best plumbers in Miami keywords, previous positions 39 to 47, now positions 4 to 8" aria-label="Enlarge screenshot: Semrush rankings for best plumbers in Miami keywords, previous positions 39 to 47, now positions 4 to 8"><img src="Plumbing/image_original.png" alt="Semrush rankings for best plumbers in Miami keywords, previous positions 39 to 47, now positions 4 to 8" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Miami plumbers</span><ul class="ls-moves"><li><span>best plumbers in miami</span><span class="mv"><i>47</i> &rarr; <em>4</em></span></li><li><span>plumbers miami</span><span class="mv"><i>46</i> &rarr; <em>5</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:140ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#1</span>
+          <button class="ls-shot" type="button" data-full="Plumbing/image_original1.png" data-cap="Semrush rankings for plumbing and grease trap keywords, previous positions 92 to 98, now top positions" aria-label="Enlarge screenshot: Semrush rankings for plumbing and grease trap keywords, previous positions 92 to 98, now top positions"><img src="Plumbing/image_original1.png" alt="Semrush rankings for plumbing and grease trap keywords, previous positions 92 to 98, now top positions" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Brand and grease trap</span><ul class="ls-moves"><li><span>people's plumbing &amp; mechanical inc</span><span class="mv"><i>98</i> &rarr; <em>1</em></span></li><li><span>grease trap cleaning miami</span><span class="mv"><i>92</i> &rarr; <em>1</em></span></li></ul></figcaption>
+        </figure></div>
+        <div class="ls-item rv" style="--d:280ms"><figure class="ls-card tilt"><span class="ls-badge" aria-hidden="true">#4</span>
+          <button class="ls-shot" type="button" data-full="Plumbing/image_original2.png" data-cap="Semrush rankings for Miami plumbing keywords, previous positions 36 to 45, now positions 4 to 8" aria-label="Enlarge screenshot: Semrush rankings for Miami plumbing keywords, previous positions 36 to 45, now positions 4 to 8"><img src="Plumbing/image_original2.png" alt="Semrush rankings for Miami plumbing keywords, previous positions 36 to 45, now positions 4 to 8" loading="lazy"></button>
+          <figcaption class="ls-cap"><span class="mono">Commercial plumbing</span><ul class="ls-moves"><li><span>plumbers in miami</span><span class="mv"><i>45</i> &rarr; <em>4</em></span></li><li><span>miami commercial plumbing</span><span class="mv"><i>40</i> &rarr; <em>5</em></span></li></ul></figcaption>
+        </figure></div>
+      </div>
+    </div>
+
+    <p class="ls-note">Source: Semrush position tracking screenshots. Lower numbers are better. Each card lists two example keywords from its screenshot; click a screenshot to see every keyword.</p>
   </div>
 </section>
 
@@ -1285,4 +1439,47 @@ $('#year').textContent=new Date().getFullYear();
 })();
 </script>
 
+
+<div class="shot-lb" id="shot-lb" role="dialog" aria-modal="true" aria-label="Ranking screenshot" hidden>
+  <button class="icon-btn" id="shot-close" type="button" aria-label="Close screenshot">&times;</button>
+  <figure><img id="shot-img" alt=""><p id="shot-cap" class="mono"></p></figure>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.ls-tab'),groups=document.querySelectorAll('.ls-group');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    var c=t.getAttribute('data-cat');
+    tabs.forEach(function(x){x.setAttribute('aria-pressed',x===t?'true':'false');});
+    groups.forEach(function(g){g.hidden=!(c==='all'||g.getAttribute('data-cat')===c);});
+  });});
+  var lb=document.getElementById('shot-lb'),img=document.getElementById('shot-img'),cap=document.getElementById('shot-cap'),last=null;
+  function close(){lb.hidden=true;img.removeAttribute('src');document.body.style.overflow='';if(last)last.focus();}
+  document.querySelectorAll('.ls-shot').forEach(function(b){b.addEventListener('click',function(){
+    last=b;img.src=b.getAttribute('data-full');img.alt=b.getAttribute('data-cap')||'';cap.textContent='Previous position vs. position after SEO';
+    lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('shot-close').focus();
+  });});
+  lb.addEventListener('click',function(e){if(e.target!==img)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close();});
+})();
+</script>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.ls-stat b[data-from]');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(el){
+    var f=+el.getAttribute('data-from'),t=+el.getAttribute('data-to'),st=null,d=1600;
+    function step(ts){
+      if(st===null)st=ts;
+      var p=Math.min((ts-st)/d,1),e=p===1?1:1-Math.pow(2,-10*p);
+      el.textContent=f+' \u2192 '+Math.round(f+(t-f)*e);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if(reduce||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target);}});},{threshold:.6});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
 </body></html>
